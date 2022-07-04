@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import api from "./services/api.js";
+import Presentation from './components/presentation/presentation';
+import PokemonCards from './components/pokemonCards/pokemonCards';
 
 const App = () => {
   const [pokemon, setPokemon] = useState(null);
@@ -21,17 +23,17 @@ const App = () => {
       const response = await api.get(`/pokemon/${typedPokemon}`);
       setPokemon(response.data);
       setError(null);
-      setIsLoading(false);
     } catch(error){
       setPokemon(null);
       setError("Pokemon not found!");
+    } finally{
       setIsLoading(false);
     }
   };
   
   return (
     <div>
-      <h1>Welcome to my Pokedex!</h1>
+      <Presentation />
       <p>Enter pokemon name or id</p>
       <form onSubmit={handleSubmit}>
         <input 
@@ -48,7 +50,9 @@ const App = () => {
             </>
           )}
         </button>
-      </form>
+      </form> 
+      <PokemonCards />     
+      
     </div>
   )
 }
