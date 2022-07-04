@@ -4,48 +4,39 @@ import './pokemonCards.css';
 
 function PokemonCards(props) {
   const [pokemonID, setPokemonID] = useState(1);
-  const callsPerLoading = 5;
-  const [totalPokemon, setTotalPokemon] = useState(5);
-  const [teste, setTest] = useState(false)
-  var cards = [];
+  const [loading, setLoading] = useState(false)
+  const [cards, setCards] = useState([]);
 
-  const generateCards = (cards) => {
-    if(!teste){
-      for(var i = pokemonID; i <= totalPokemon; i++){
-        cards.push(<Card pokemonID={i} key={i}/>)
-      }
-      // setPokemonID(6);
-      // console.log("pokemonID: "+pokemonID);
-      // setTest(true);
-      return (cards);
+  const generateCards = () => {
+    if(loading){
+      setCards(cards => [...cards, <Card pokemonID={pokemonID} key={pokemonID}/>]);
+      setPokemonID(pokemonID+1);
+      setLoading(false);
     }
   };
 
 
-  // 993448919
-  const [pageNumber, setPageNumber] = useState(1)
   const observer = useRef()
-  const [loading, setLoading] = useState(false)
   const loaderRef = useCallback(node => {
-    // if (loading) return
-    if (observer.current) observer.current.disconnect()
+    if (observer.current){
+      observer.current.disconnect();
+    } 
     observer.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting ) {
-        // setPageNumber(prevPageNumber => prevPageNumber + 1)
         setLoading(true)
-        // setPokemonID(pokemonID+callsPerLoading);
-        // setTotalPokemon(totalPokemon+callsPerLoading)
-        console.log("testeaqui")
+        generateCards();
+        console.log("pokemon: "+pokemonID )
       }
-    })
-    if (node) observer.current.observe(node)
-  }, [loading])
+    });
+    if (node){
+      observer.current.observe(node);
+    } 
+  }, [loading]);
   
-    
   return (
     <>
       <div className="pokemonCards">
-        {generateCards(cards)}
+        {cards ? cards : <p>Loading pokemons</p>}
       </div>
       <p ref={loaderRef}>Loading pokemons...</p>
     </>

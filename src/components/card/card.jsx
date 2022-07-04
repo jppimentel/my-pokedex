@@ -58,6 +58,10 @@ function Card(props) {
                 <span>
                   <strong>Type</strong>: {pokemon.types[0].type.name}
                 </span>
+                <br></br>
+                <span>
+                  <strong>ID</strong>: {pokemon.id}
+                </span>
               </div>
             </>
           )}
