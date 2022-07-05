@@ -25,7 +25,6 @@ function PokemonCards(props) {
       if (entries[0].isIntersecting ) {
         setLoading(true)
         generateCards();
-        console.log("pokemon: "+pokemonID )
       }
     });
     if (node){

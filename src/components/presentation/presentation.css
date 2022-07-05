@@ -1,0 +1,16 @@
+.presentation{
+    background-color: #FB1B1B;
+    text-align: center;
+}
+
+.presentationImage{
+    width: 300px;
+    background-color: transparent;
+}
+
+.presentationText{
+    color: white;
+    font: italic small-caps bold 40px cursive;
+    position: relative;
+    top: -50px;
+}
