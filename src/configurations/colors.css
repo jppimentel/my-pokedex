@@ -1,0 +1,20 @@
+:root {
+    --colorTypeBug: #78ad4d;
+    --colorTypeDark: #000000af;
+    --colorTypeDragon: #0C3348;
+    --colorTypeElectric: #E6BC2F;
+    --colorTypeFairy: #d177b7;
+    --colorTypeFighting: #CE2211;
+    --colorTypeFire: #E54222;
+    --colorTypeFlying: #6667a3;
+    --colorTypeGhost: #855ac980;
+    --colorTypeGrass: #4DAD5B;
+    --colorTypeGround: #cbab4a;
+    --colorTypeIce: #30A7D7;
+    --colorTypeNormal: #37796C;
+    --colorTypePoison: #855AC9;
+    --colorTypePsychic: #c95aaa;
+    --colorTypeRock: #D5A100;
+    --colorTypeSteel: #919191;
+    --colorTypeWater: #1B53BA;
+  }

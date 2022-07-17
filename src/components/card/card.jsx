@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from "../../services/api.js";
+import PokemonTypes from '../pokemonTypes/pokemonTypes';
+
 
 import './card.css';
 
@@ -27,7 +29,11 @@ function Card(props) {
 
   useEffect(() => {
       getPokemon(props.pokemonID);
-  }, []);    
+  }, []);  
+  
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   
   return (
     <>
@@ -38,14 +44,16 @@ function Card(props) {
             { !error && (
               <>
                 <div>
-                  <h2>{pokemon.name}</h2>
+                  <p className='cardID'><strong>#{pokemon.id}</strong></p>
+                  <h2 className='cardTitle'>{capitalizeFirstLetter(pokemon.name)}</h2>
                   <img 
+                    className="pokemonImage"
                     src={pokemon.sprites['front_default']}
                     alt={pokemon.name}
                   />
                 </div>
                 <div>
-                  <span>
+                  {/* <span>
                     <strong>Height</strong>: {pokemon.height*10} cm
                   </span>
                   <br></br>
@@ -53,13 +61,15 @@ function Card(props) {
                     <strong>Weight</strong>: {pokemon.weight/10} kg
                   </span>
                   <br></br>
-                  <span>
-                    <strong>Type</strong>: {pokemon.types[0].type.name}
-                  </span>
-                  <br></br>
-                  <span>
-                    <strong>ID</strong>: {pokemon.id}
-                  </span>
+                  <br></br> */}
+                    <div className='types'>
+                      {pokemon.types[0] && (
+                         <PokemonTypes type={capitalizeFirstLetter(pokemon.types[0].type.name)} /> 
+                      )}
+                      {pokemon.types[1] && (
+                         <PokemonTypes type={capitalizeFirstLetter(pokemon.types[1].type.name)} /> 
+                      )}
+                    </div>
                 </div>
               </>
             )}
